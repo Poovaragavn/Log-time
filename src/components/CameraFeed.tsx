@@ -1,4 +1,4 @@
-﻿import React, { useRef, useEffect, useState, useCallback } from 'react';
+import React, { useRef, useEffect, useState, useCallback } from 'react';
 import * as faceapi from 'face-api.js';
 import { CheckCircle, AlertTriangle, RefreshCw, ShieldCheck, SwitchCamera, Focus, UserCheck, ShieldAlert, Loader } from 'lucide-react';
 
@@ -117,14 +117,21 @@ export const CameraFeed: React.FC<CameraFeedProps> = ({
     let stream: MediaStream | null = null;
     async function initCamera() {
       try {
-        const constraints: MediaTrackConstraints = selectedDeviceId
-          ? { deviceId: { exact: selectedDeviceId } }
-          : { facingMode, width: { ideal: 640 }, height: { ideal: 480 } };
-        stream = await navigator.mediaDevices.getUserMedia({ video: constraints, audio: false });
+        let videoConstraints: boolean | MediaTrackConstraints = { facingMode, width: { ideal: 640 }, height: { ideal: 480 } };
+        if (selectedDeviceId) {
+          videoConstraints = { deviceId: { exact: selectedDeviceId } };
+        }
+        try {
+          stream = await navigator.mediaDevices.getUserMedia({ video: videoConstraints, audio: false });
+        } catch {
+          // Mobile camera fallback if resolution constraints are not supported
+          stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode }, audio: false });
+        }
         if (videoRef.current) { videoRef.current.srcObject = stream; setStreamActive(true); }
-      } catch {
+      } catch (err) {
+        console.error('Camera init error:', err);
         setStreamActive(false);
-        setStatusMessage('Camera access denied. Please allow camera permission.');
+        setStatusMessage('Camera access denied or unavailable. Please allow camera permission.');
       }
     }
     initCamera();
