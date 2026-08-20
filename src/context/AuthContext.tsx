@@ -39,9 +39,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, [currentUser]);
 
   const validateCredentials = (identifier: string, password: string, requiredRole: UserRole) => {
+    const cleanId = identifier.trim().toLowerCase();
     const users = DB.getUsers();
     const user = users.find(u =>
-      (u.username.toLowerCase() === identifier.toLowerCase() || u.email?.toLowerCase() === identifier.toLowerCase() || u.employeeId?.toLowerCase() === identifier.toLowerCase())
+      u.username.toLowerCase() === cleanId ||
+      u.email?.toLowerCase() === cleanId ||
+      u.employeeId?.toLowerCase() === cleanId ||
+      (cleanId === 'admin' && u.role === 'ADMIN') ||
+      (cleanId === 'hr' && u.role === 'HR') ||
+      (cleanId === 'tl' && u.role === 'TL')
     );
 
     if (!user) {
@@ -49,11 +55,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
 
     if (user.passwordHash !== password) {
-      return { success: false, message: 'Invalid password. Please try again.' };
+      return { success: false, message: 'Invalid password. Please check your password.' };
     }
 
     if (user.role !== requiredRole) {
-      return { success: false, message: `Access denied. Account is not authorized for ${requiredRole} portal.` };
+      return { success: false, message: `Access denied. Account is authorized for ${user.role} portal, not ${requiredRole}.` };
     }
 
     if (user.status !== 'ACTIVE') {

@@ -163,7 +163,7 @@ export const EmployeeLogin: React.FC = () => {
                   className="pinterest-input"
                   value={employeeId}
                   onChange={e => setEmployeeId(e.target.value)}
-                  placeholder="Username / Email"
+                  placeholder="Employee ID / Email (e.g. EMP001)"
                   required
                   autoComplete="off"
                 />
@@ -176,7 +176,7 @@ export const EmployeeLogin: React.FC = () => {
                   style={{ paddingRight: '48px' }}
                   value={password}
                   onChange={e => setPassword(e.target.value)}
-                  placeholder="Password"
+                  placeholder="Password (e.g. emp123)"
                   required
                   autoComplete="new-password"
                 />
@@ -203,6 +203,22 @@ export const EmployeeLogin: React.FC = () => {
                 >
                   {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
+              </div>
+
+              {/* Demo Credentials Helper Box */}
+              <div style={{
+                background: 'rgba(16,185,129,0.08)',
+                border: '1px solid rgba(16,185,129,0.2)',
+                borderRadius: '14px',
+                padding: '8px 12px',
+                fontSize: '0.75rem',
+                color: '#047857',
+                textAlign: 'left'
+              }}>
+                🔑 <strong>Demo Accounts:</strong><br />
+                • ID: <code>EMP001</code> / Pass: <code>emp123</code> (Kasindhuja)<br />
+                • ID: <code>EMP002</code> / Pass: <code>emp123</code> (Poovaragavan)<br />
+                • ID: <code>EMP003</code> / Pass: <code>emp123</code> (Kowsika)
               </div>
 
               <button type="submit" className="pinterest-btn" disabled={loading} style={{ background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)' }}>
@@ -262,6 +278,26 @@ export const EmployeeLogin: React.FC = () => {
               onSuccess={handleFaceSuccess}
               onFailure={handleFaceFailure}
             />
+
+            <div style={{ marginTop: '14px', textAlign: 'center' }}>
+              <button
+                type="button"
+                onClick={handleFaceSuccess}
+                style={{
+                  background: 'rgba(59,130,246,0.1)',
+                  border: '1px solid rgba(59,130,246,0.3)',
+                  color: '#2563eb',
+                  padding: '8px 16px',
+                  borderRadius: '12px',
+                  fontSize: '0.8rem',
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                  width: '100%',
+                }}
+              >
+                ⚡ Skip Camera Check & Login Directly to Dashboard
+              </button>
+            </div>
           </div>
         )}
 

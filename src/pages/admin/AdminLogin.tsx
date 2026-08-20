@@ -120,41 +120,55 @@ export const AdminLogin: React.FC = () => {
             />
           </div>
 
-          <div style={{ position: 'relative', width: '100%' }}>
-            <input
-              type={showPassword ? 'text' : 'password'}
-              className="pinterest-input"
-              style={{ paddingRight: '48px' }}
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              placeholder="Password"
-              required
-              autoComplete="new-password"
-            />
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              style={{
-                position: 'absolute',
-                right: '18px',
-                top: '50%',
-                transform: 'translateY(-50%)',
-                background: 'none',
-                border: 'none',
-                color: showPassword ? '#4f46e5' : '#94a3b8',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: '4px',
-                borderRadius: '50%',
-                transition: 'all 0.2s ease',
-              }}
-              title={showPassword ? 'Hide password' : 'Show password'}
-            >
-              {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-            </button>
-          </div>
+            <div style={{ position: 'relative', width: '100%' }}>
+              <input
+                type={showPassword ? 'text' : 'password'}
+                className="pinterest-input"
+                style={{ paddingRight: '48px' }}
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                placeholder="Password (e.g. admin123)"
+                required
+                autoComplete="current-password"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                style={{
+                  position: 'absolute',
+                  right: '18px',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  background: 'none',
+                  border: 'none',
+                  color: showPassword ? '#f59e0b' : '#94a3b8',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: '4px',
+                  borderRadius: '50%',
+                  transition: 'all 0.2s ease',
+                }}
+                title={showPassword ? 'Hide password' : 'Show password'}
+              >
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </button>
+            </div>
+
+            <div style={{
+              background: 'rgba(245,158,11,0.08)',
+              border: '1px solid rgba(245,158,11,0.2)',
+              borderRadius: '14px',
+              padding: '8px 12px',
+              fontSize: '0.75rem',
+              color: '#d97706',
+              textAlign: 'left'
+            }}>
+              🔑 <strong>Admin Demo Login:</strong><br />
+              • User: <code>admin</code> or <code>admin@company.com</code><br />
+              • Password: <code>admin123</code>
+            </div>
 
           <button type="submit" className="pinterest-btn" disabled={loading}>
             <span>{loading ? 'AUTHENTICATING...' : 'Login to Admin Portal'}</span>
