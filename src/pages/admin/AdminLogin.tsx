@@ -156,44 +156,6 @@ export const AdminLogin: React.FC = () => {
               </button>
             </div>
 
-            <div style={{
-              background: 'rgba(245,158,11,0.08)',
-              border: '1px solid rgba(245,158,11,0.2)',
-              borderRadius: '16px',
-              padding: '12px',
-              fontSize: '0.78rem',
-              color: '#d97706',
-              textAlign: 'left'
-            }}>
-              <div style={{ fontWeight: 800, marginBottom: '8px' }}>
-                ⚡ <strong>1-Click Instant Admin Login:</strong>
-              </div>
-              <button
-                type="button"
-                onClick={async () => {
-                  const res = await login('admin@company.com', 'admin123', 'ADMIN');
-                  if (res.success) {
-                    window.location.hash = '#/admin/dashboard';
-                    window.dispatchEvent(new Event('hashchange'));
-                  }
-                }}
-                style={{
-                  background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
-                  color: '#ffffff',
-                  border: 'none',
-                  padding: '10px 16px',
-                  borderRadius: '12px',
-                  fontWeight: 800,
-                  fontSize: '0.82rem',
-                  cursor: 'pointer',
-                  width: '100%',
-                  boxShadow: '0 4px 12px rgba(245,158,11,0.35)'
-                }}
-              >
-                🛡️ 1-Click Instant Login (Admin Portal)
-              </button>
-            </div>
-
           <button type="submit" className="pinterest-btn" disabled={loading}>
             <span>{loading ? 'AUTHENTICATING...' : 'Login to Admin Portal'}</span>
             <ArrowUpRight size={18} />

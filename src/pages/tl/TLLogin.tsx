@@ -156,44 +156,6 @@ export const TLLogin: React.FC = () => {
             </button>
           </div>
 
-          <div style={{
-            background: 'rgba(59,130,246,0.08)',
-            border: '1px solid rgba(59,130,246,0.2)',
-            borderRadius: '16px',
-            padding: '12px',
-            fontSize: '0.78rem',
-            color: '#2563eb',
-            textAlign: 'left'
-          }}>
-            <div style={{ fontWeight: 800, marginBottom: '8px' }}>
-              ⚡ <strong>1-Click Instant Team Lead Login:</strong>
-            </div>
-            <button
-              type="button"
-              onClick={async () => {
-                const res = await login('tl@company.com', 'tl123', 'TL');
-                if (res.success) {
-                  window.location.hash = '#/tl/dashboard';
-                  window.dispatchEvent(new Event('hashchange'));
-                }
-              }}
-              style={{
-                background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
-                color: '#ffffff',
-                border: 'none',
-                padding: '10px 16px',
-                borderRadius: '12px',
-                fontWeight: 800,
-                fontSize: '0.82rem',
-                cursor: 'pointer',
-                width: '100%',
-                boxShadow: '0 4px 12px rgba(59,130,246,0.35)'
-              }}
-            >
-              👨‍💻 1-Click Instant Login (TL Portal)
-            </button>
-          </div>
-
           <button type="submit" className="pinterest-btn" disabled={loading} style={{ background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)' }}>
             <span>{loading ? 'AUTHENTICATING...' : 'Login to Team Lead Portal'}</span>
             <ArrowUpRight size={18} />
