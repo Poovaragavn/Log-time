@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Log Time</string>
+    <string name="title_activity_main">Log Time</string>
+    <string name="package_name">com.poovaragavn.logtime</string>
+    <string name="custom_url_scheme">com.poovaragavn.logtime</string>
+</resources>

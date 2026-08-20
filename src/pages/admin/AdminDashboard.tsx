@@ -525,7 +525,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ initialTab = 'da
   const { currentUser } = useAuth();
   const [activeTab, setActiveTab] = useState(initialTab);
 
-  const [unlockedTabs, setUnlockedTabs] = useState<Record<string, boolean>>({
+  const [, setUnlockedTabs] = useState<Record<string, boolean>>({
     dashboard: true,
     employees: true,
     hr_management: true,

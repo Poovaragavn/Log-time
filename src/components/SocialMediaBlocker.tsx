@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ShieldCheck, ShieldAlert, AlertTriangle, Lock, Ban, Laptop, Download, Terminal, CheckCircle2, Zap, AlertCircle } from 'lucide-react';
+import { ShieldCheck, ShieldAlert, AlertTriangle, Lock, Ban, Laptop, Download, CheckCircle2, Zap, AlertCircle } from 'lucide-react';
 import { DB } from '../services/db';
 import { useAuth } from '../context/AuthContext';
 

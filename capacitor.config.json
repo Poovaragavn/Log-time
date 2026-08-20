@@ -1,0 +1,11 @@
+{
+  "appId": "com.poovaragavn.logtime",
+  "appName": "Log Time",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  },
+  "android": {
+    "allowMixedContent": true
+  }
+}

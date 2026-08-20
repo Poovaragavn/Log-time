@@ -1,7 +1,7 @@
 export type UserRole = 'ADMIN' | 'HR' | 'TL' | 'EMPLOYEE';
 export type AccountStatus = 'ACTIVE' | 'INACTIVE' | 'SUSPENDED';
 export type WorkStatus = 'ACTIVE' | 'IDLE' | 'AWAY' | 'BREAK' | 'LOCKED' | 'OFFLINE';
-export type EventType = 'FACE_PRESENT' | 'FACE_ABSENT' | 'FACE_REAPPEARED' | 'MULTIPLE_FACES' | 'LIVENESS_FAILED';
+export type EventType = 'FACE_PRESENT' | 'FACE_ABSENT' | 'FACE_REAPPEARED' | 'MULTIPLE_FACES' | 'LIVENESS_FAILED' | 'DISTRACTION_DETECTED';
 export type FaceGazeState = 'STRAIGHT_FORWARD' | 'LOOKING_LEFT' | 'LOOKING_RIGHT' | 'FACE_ABSENT';
 
 export interface User {
