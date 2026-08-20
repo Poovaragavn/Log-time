@@ -205,20 +205,77 @@ export const EmployeeLogin: React.FC = () => {
                 </button>
               </div>
 
-              {/* Demo Credentials Helper Box */}
+              {/* Demo Credentials Helper Box with 1-Click Quick Login */}
               <div style={{
                 background: 'rgba(16,185,129,0.08)',
                 border: '1px solid rgba(16,185,129,0.2)',
-                borderRadius: '14px',
-                padding: '8px 12px',
-                fontSize: '0.75rem',
+                borderRadius: '16px',
+                padding: '12px',
+                fontSize: '0.78rem',
                 color: '#047857',
                 textAlign: 'left'
               }}>
-                🔑 <strong>Demo Accounts:</strong><br />
-                • ID: <code>EMP001</code> / Pass: <code>emp123</code> (Kasindhuja)<br />
-                • ID: <code>EMP002</code> / Pass: <code>emp123</code> (Poovaragavan)<br />
-                • ID: <code>EMP003</code> / Pass: <code>emp123</code> (Kowsika)
+                <div style={{ fontWeight: 800, marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  ⚡ <strong>1-Click Instant Demo Login:</strong>
+                </div>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const res = validateCredentials('EMP001', 'emp123', 'EMPLOYEE');
+                      if (res.success && res.user) {
+                        completeFaceVerification(res.user);
+                        initSessionOnLogin();
+                        setWorkStatus('ACTIVE');
+                        window.location.hash = '#/employee/dashboard';
+                        window.dispatchEvent(new Event('hashchange'));
+                      }
+                    }}
+                    style={{
+                      background: '#10b981',
+                      color: '#ffffff',
+                      border: 'none',
+                      padding: '8px 10px',
+                      borderRadius: '10px',
+                      fontWeight: 800,
+                      fontSize: '0.74rem',
+                      cursor: 'pointer',
+                      boxShadow: '0 2px 8px rgba(16,185,129,0.3)'
+                    }}
+                  >
+                    👤 Kasindhuja (EMP001)
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const res = validateCredentials('EMP002', 'emp123', 'EMPLOYEE');
+                      if (res.success && res.user) {
+                        completeFaceVerification(res.user);
+                        initSessionOnLogin();
+                        setWorkStatus('ACTIVE');
+                        window.location.hash = '#/employee/dashboard';
+                        window.dispatchEvent(new Event('hashchange'));
+                      }
+                    }}
+                    style={{
+                      background: '#059669',
+                      color: '#ffffff',
+                      border: 'none',
+                      padding: '8px 10px',
+                      borderRadius: '10px',
+                      fontWeight: 800,
+                      fontSize: '0.74rem',
+                      cursor: 'pointer',
+                      boxShadow: '0 2px 8px rgba(5,150,105,0.3)'
+                    }}
+                  >
+                    👤 Poovaragavan (EMP002)
+                  </button>
+                </div>
+                <div style={{ marginTop: '8px', fontSize: '0.72rem', color: '#64748b', textAlign: 'center' }}>
+                  Or enter ID: <code>EMP001</code> / Pass: <code>emp123</code> above
+                </div>
               </div>
 
               <button type="submit" className="pinterest-btn" disabled={loading} style={{ background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)' }}>

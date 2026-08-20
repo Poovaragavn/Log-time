@@ -156,6 +156,44 @@ export const HRLogin: React.FC = () => {
             </button>
           </div>
 
+          <div style={{
+            background: 'rgba(236,72,153,0.08)',
+            border: '1px solid rgba(236,72,153,0.2)',
+            borderRadius: '16px',
+            padding: '12px',
+            fontSize: '0.78rem',
+            color: '#db2777',
+            textAlign: 'left'
+          }}>
+            <div style={{ fontWeight: 800, marginBottom: '8px' }}>
+              ⚡ <strong>1-Click Instant HR Login:</strong>
+            </div>
+            <button
+              type="button"
+              onClick={async () => {
+                const res = await login('hr@company.com', 'hr123', 'HR');
+                if (res.success) {
+                  window.location.hash = '#/hr/dashboard';
+                  window.dispatchEvent(new Event('hashchange'));
+                }
+              }}
+              style={{
+                background: 'linear-gradient(135deg, #ec4899 0%, #be185d 100%)',
+                color: '#ffffff',
+                border: 'none',
+                padding: '10px 16px',
+                borderRadius: '12px',
+                fontWeight: 800,
+                fontSize: '0.82rem',
+                cursor: 'pointer',
+                width: '100%',
+                boxShadow: '0 4px 12px rgba(236,72,153,0.35)'
+              }}
+            >
+              👩‍💼 1-Click Instant Login (HR Portal)
+            </button>
+          </div>
+
           <button type="submit" className="pinterest-btn" disabled={loading} style={{ background: 'linear-gradient(135deg, #ec4899 0%, #be185d 100%)' }}>
             <span>{loading ? 'AUTHENTICATING...' : 'Login to HR Portal'}</span>
             <ArrowUpRight size={18} />

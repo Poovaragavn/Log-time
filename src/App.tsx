@@ -18,11 +18,11 @@ import { EmployeeDashboard } from './pages/employee/EmployeeDashboard';
 import { Shield, UserCog, Users, UserCheck, Clock } from 'lucide-react';
 
 const RouterContent: React.FC = () => {
-  const [currentHash, setCurrentHash] = useState(window.location.hash || '#/employee/login');
+  const [currentHash, setCurrentHash] = useState(window.location.hash || '');
 
   useEffect(() => {
     const handleHashChange = () => {
-      setCurrentHash(window.location.hash || '#/employee/login');
+      setCurrentHash(window.location.hash || '');
     };
     window.addEventListener('hashchange', handleHashChange);
     window.addEventListener('popstate', handleHashChange);
