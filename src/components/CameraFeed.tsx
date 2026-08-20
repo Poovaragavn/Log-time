@@ -11,7 +11,7 @@ interface CameraFeedProps {
   maxAttempts?: number;
 }
 
-const MODELS_URL = '/models';
+const MODELS_URL = (import.meta.env.BASE_URL || '/').replace(/\/$/, '') + '/models';
 // Euclidean distance threshold: <0.50 = same person, >0.50 = different
 const MATCH_THRESHOLD = 0.50;
 
