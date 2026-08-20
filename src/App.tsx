@@ -25,7 +25,11 @@ const RouterContent: React.FC = () => {
       setCurrentHash(window.location.hash || '#/employee/login');
     };
     window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    window.addEventListener('popstate', handleHashChange);
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+      window.removeEventListener('popstate', handleHashChange);
+    };
   }, []);
 
   if (currentHash === '#' || currentHash === '#/' || currentHash === '') {
@@ -82,22 +86,24 @@ const RouterContent: React.FC = () => {
     );
   }
 
-  if (currentHash === '#/admin/login') return <AdminLogin />;
-  if (currentHash === '#/admin/dashboard') {
+  const hashClean = currentHash.split('?')[0].replace(/\/$/, '');
+
+  if (hashClean === '#/admin/login') return <AdminLogin />;
+  if (hashClean.startsWith('#/admin/dashboard') || hashClean === '#/admin') {
     return (
       <ProtectedRoute allowedRole="ADMIN">
         <AdminDashboard />
       </ProtectedRoute>
     );
   }
-  if (currentHash === '#/admin/salary' || currentHash === '#/salary') {
+  if (hashClean.startsWith('#/admin/salary') || hashClean === '#/salary') {
     return (
       <ProtectedRoute allowedRole="ADMIN">
         <AdminDashboard initialTab="salary" />
       </ProtectedRoute>
     );
   }
-  if (currentHash === '#/admin/attendance' || currentHash === '#/attendance') {
+  if (hashClean.startsWith('#/admin/attendance') || hashClean === '#/attendance') {
     return (
       <ProtectedRoute allowedRole="ADMIN">
         <AdminDashboard initialTab="attendance" />
@@ -105,8 +111,8 @@ const RouterContent: React.FC = () => {
     );
   }
 
-  if (currentHash === '#/hr/login') return <HRLogin />;
-  if (currentHash === '#/hr/dashboard') {
+  if (hashClean === '#/hr/login') return <HRLogin />;
+  if (hashClean.startsWith('#/hr/dashboard') || hashClean === '#/hr') {
     return (
       <ProtectedRoute allowedRole="HR">
         <HRDashboard />
@@ -114,8 +120,8 @@ const RouterContent: React.FC = () => {
     );
   }
 
-  if (currentHash === '#/tl/login') return <TLLogin />;
-  if (currentHash === '#/tl/dashboard') {
+  if (hashClean === '#/tl/login') return <TLLogin />;
+  if (hashClean.startsWith('#/tl/dashboard') || hashClean === '#/tl') {
     return (
       <ProtectedRoute allowedRole="TL">
         <TLDashboard />
@@ -123,8 +129,8 @@ const RouterContent: React.FC = () => {
     );
   }
 
-  if (currentHash === '#/employee/login') return <EmployeeLogin />;
-  if (currentHash === '#/employee/dashboard') {
+  if (hashClean === '#/employee/login') return <EmployeeLogin />;
+  if (hashClean.startsWith('#/employee/dashboard') || hashClean === '#/employee') {
     return (
       <ProtectedRoute allowedRole="EMPLOYEE">
         <EmployeeDashboard />

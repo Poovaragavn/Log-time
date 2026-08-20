@@ -19,6 +19,7 @@ export const AdminLogin: React.FC = () => {
       const res = await login(username, password, 'ADMIN');
       if (res.success) {
         window.location.hash = '#/admin/dashboard';
+        window.dispatchEvent(new Event('hashchange'));
       } else {
         setError(res.message || 'Invalid Admin credentials');
       }

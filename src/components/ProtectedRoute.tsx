@@ -12,12 +12,13 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowe
 
   if (!isAuthenticated || !currentUser) {
     const loginPaths: Record<UserRole, string> = {
-      ADMIN: '/admin/login',
-      HR: '/hr/login',
-      TL: '/tl/login',
-      EMPLOYEE: '/employee/login',
+      ADMIN: '#/admin/login',
+      HR: '#/hr/login',
+      TL: '#/tl/login',
+      EMPLOYEE: '#/employee/login',
     };
     window.location.hash = loginPaths[allowedRole];
+    window.dispatchEvent(new Event('hashchange'));
     return null;
   }
 

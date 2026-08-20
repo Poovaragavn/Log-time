@@ -19,6 +19,7 @@ export const TLLogin: React.FC = () => {
       const res = await login(username, password, 'TL');
       if (res.success) {
         window.location.hash = '#/tl/dashboard';
+        window.dispatchEvent(new Event('hashchange'));
       } else {
         setError(res.message || 'Invalid Team Lead credentials');
       }

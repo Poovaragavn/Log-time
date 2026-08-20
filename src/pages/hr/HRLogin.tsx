@@ -19,6 +19,7 @@ export const HRLogin: React.FC = () => {
       const res = await login(username, password, 'HR');
       if (res.success) {
         window.location.hash = '#/hr/dashboard';
+        window.dispatchEvent(new Event('hashchange'));
       } else {
         setError(res.message || 'Invalid HR credentials');
       }

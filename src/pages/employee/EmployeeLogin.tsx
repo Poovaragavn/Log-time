@@ -62,6 +62,7 @@ export const EmployeeLogin: React.FC = () => {
 
     setTimeout(() => {
       window.location.hash = '#/employee/dashboard';
+      window.dispatchEvent(new Event('hashchange'));
     }, 2200);
   };
 
