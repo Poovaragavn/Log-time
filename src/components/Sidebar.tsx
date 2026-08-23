@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { Shield, Clock, Users, UserCheck, UserCog, LogOut, ExternalLink, Globe, Menu, X } from 'lucide-react';
+import { Shield, Clock, Users, UserCheck, UserCog, LogOut, Menu, X } from 'lucide-react';
 
 interface SidebarProps {
   activeTab?: string;
@@ -32,6 +32,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange, tabs =
     onTabChange?.(tabId);
     setMobileOpen(false); // Auto close mobile drawer on selection
   };
+
+    const homeHref = currentUser ? `#/${currentUser.role.toLowerCase()}/dashboard` : '#/employee/login';
 
   return (
     <>
@@ -73,7 +75,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange, tabs =
         {/* Sidebar Brand Header (Desktop) */}
         <div className="sidebar-brand-section">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <a href="#/" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <a href={homeHref} style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center', gap: '12px' }}>
               <div className="sidebar-brand-logo">
                 <Clock size={22} color="#ffffff" />
               </div>
@@ -114,6 +116,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange, tabs =
 
           {!currentUser && (
             <>
+              <a href="#/employee/login" onClick={() => setMobileOpen(false)} className={`sidebar-nav-item ${currentHash.includes('/employee') || currentHash === '#/' || currentHash === '#' || !currentHash ? 'active' : ''}`}>
+                <UserCheck size={18} />
+                <span>Employee Portal</span>
+              </a>
               <a href="#/admin/login" onClick={() => setMobileOpen(false)} className={`sidebar-nav-item ${currentHash.includes('/admin') ? 'active' : ''}`}>
                 <Shield size={18} />
                 <span>Admin Portal</span>
@@ -125,10 +131,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange, tabs =
               <a href="#/tl/login" onClick={() => setMobileOpen(false)} className={`sidebar-nav-item ${currentHash.includes('/tl') ? 'active' : ''}`}>
                 <Users size={18} />
                 <span>Team Lead Portal</span>
-              </a>
-              <a href="#/employee/login" onClick={() => setMobileOpen(false)} className={`sidebar-nav-item ${currentHash.includes('/employee') ? 'active' : ''}`}>
-                <UserCheck size={18} />
-                <span>Employee Portal</span>
               </a>
             </>
           )}
@@ -153,12 +155,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange, tabs =
           )}
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <a href="#/" onClick={() => setMobileOpen(false)} className="sidebar-action-btn" title="Switch Portal / Home">
-              <Globe size={16} />
-              <span>Portals ⨁</span>
-              <ExternalLink size={14} style={{ marginLeft: 'auto', opacity: 0.6 }} />
-            </a>
-
             {currentUser ? (
               <button onClick={() => { setMobileOpen(false); logout(); }} className="sidebar-logout-btn">
                 <LogOut size={16} />

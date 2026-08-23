@@ -228,8 +228,6 @@ export const EmployeeLogin: React.FC = () => {
               <a href="#/hr/login" style={{ color: '#ec4899', textDecoration: 'none' }}>HR Portal</a>
               <span style={{ color: '#cbd5e1' }}>•</span>
               <a href="#/tl/login" style={{ color: '#3b82f6', textDecoration: 'none' }}>Team Lead</a>
-              <span style={{ color: '#cbd5e1' }}>•</span>
-              <a href="#/" style={{ color: '#6366f1', textDecoration: 'none' }}>Home</a>
             </div>
           </>
         )}

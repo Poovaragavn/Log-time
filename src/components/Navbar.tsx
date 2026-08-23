@@ -27,11 +27,13 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onTabChange, tabs = [
     }
   };
 
+    const homeHref = currentUser ? `#/${currentUser.role.toLowerCase()}/dashboard` : '#/employee/login';
+
   return (
     <header className="pill-navbar">
-      {/* Brand Logo Box linked to Home / Portal Switcher */}
-      <a href="#/" style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }} className="pill-nav-brand">
-        <div className="pill-nav-brand-logo" title="Back to Portal Selector">
+      {/* Brand Logo Box */}
+      <a href={homeHref} style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }} className="pill-nav-brand">
+        <div className="pill-nav-brand-logo" title="Log Work Time">
           <Clock size={20} color="#ffffff" />
         </div>
         <span style={{ fontWeight: 900, letterSpacing: '-0.03em', fontSize: '1.1rem' }}>Log Work Time</span>
@@ -54,19 +56,16 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onTabChange, tabs = [
 
         {!currentUser && (
           <>
+            <a href="#/employee/login" className={`pill-nav-item ${currentHash.includes('/employee') || currentHash === '#/' || currentHash === '#' || !currentHash ? 'active' : ''}`}>Employee</a>
             <a href="#/admin/login" className={`pill-nav-item ${currentHash.includes('/admin') ? 'active' : ''}`}>Admin</a>
             <a href="#/hr/login" className={`pill-nav-item ${currentHash.includes('/hr') ? 'active' : ''}`}>HR</a>
             <a href="#/tl/login" className={`pill-nav-item ${currentHash.includes('/tl') ? 'active' : ''}`}>Team Lead</a>
-            <a href="#/employee/login" className={`pill-nav-item ${currentHash.includes('/employee') ? 'active' : ''}`}>Employee</a>
           </>
         )}
       </div>
 
-      {/* Right-hand Action & Portal Switcher Links */}
+      {/* Right-hand Action Links */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-        <a href="#/" className="pill-nav-item" style={{ textDecoration: 'none', fontSize: '0.8rem', padding: '6px 12px' }} title="Switch Role / Home">
-          Portals ⨁
-        </a>
         {currentUser ? (
           <button onClick={logout} className="pill-logout-btn">
             <span>Logout</span>

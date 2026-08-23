@@ -175,13 +175,11 @@ export const HRLogin: React.FC = () => {
           fontWeight: 700
         }}>
           <span style={{ color: '#94a3b8' }}>Switch Portal:</span>
+          <a href="#/employee/login" style={{ color: '#10b981', textDecoration: 'none' }}>Employee</a>
+          <span style={{ color: '#cbd5e1' }}>•</span>
           <a href="#/admin/login" style={{ color: '#f59e0b', textDecoration: 'none' }}>Admin Portal</a>
           <span style={{ color: '#cbd5e1' }}>•</span>
           <a href="#/tl/login" style={{ color: '#3b82f6', textDecoration: 'none' }}>Team Lead</a>
-          <span style={{ color: '#cbd5e1' }}>•</span>
-          <a href="#/employee/login" style={{ color: '#10b981', textDecoration: 'none' }}>Employee</a>
-          <span style={{ color: '#cbd5e1' }}>•</span>
-          <a href="#/" style={{ color: '#6366f1', textDecoration: 'none' }}>Home</a>
         </div>
       </div>
     </div>
